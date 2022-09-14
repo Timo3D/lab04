@@ -4,6 +4,7 @@
 @course RSE1201
 @week 4
 @lab04
+@section 2
 @date 20/09/2022
 @brief This file will print formatted strings in denominations divided into notes.
 *//*_____________________________________________________________*/
@@ -34,22 +35,28 @@ void coins(int cents) {
 }
 //main function
 int main(void) {
-    int dollars, cents;
-    printf("Please enter total value: ");
-    if (scanf("%d.%d", &dollars, &cents) == 2) {
-        if ((cents < 0) || (cents > 99)) {
-            printf("The cents part specified must be between 0...99 (inclusive).\n"); return 0;
-        }
-        if (dollars < 0) {
-            printf("The dollars part specified must be non-negative.\n"); return 0;
+    while (1) {
+        int dollars, cents;
+        printf("Please enter total value: ");
+        if (scanf("%d.%d", &dollars, &cents) == 2) {
+            if ((cents < 0) || (cents > 99)) {
+                printf("Program ended\n");
+                return 0;
+            }
+            if (dollars < 0) {
+                printf("Program ended\n");
+                return 0;
+            }
+            else {
+            // Input is valid.
+                coins(dollars * 100 + cents);
+                printf("+----+--------------+-------+\n");
+            }
         }
         else {
-        // Input is valid.
-            coins(dollars * 100 + cents);
-            printf("+----+--------------+-------+\n");
+            printf("Program ended\n");
+            return 0;
         }
     }
-    else {
-        printf("You did not type in the correct format in terms of dollars and cents.\n");
-    }
+    
 }
